@@ -1,3 +1,6 @@
+---
+title: Home
+---
 # Reproduction project
 
 ## 1. Introduction
