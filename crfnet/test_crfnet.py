@@ -35,6 +35,10 @@ import numpy as np
 import pprint
 import time
 import multiprocessing
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
+config = tf.ConfigProto(gpu_options=gpu_options)
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config)
 
 # Allow relative imports when being executed as script.
 if __name__ == "__main__" and not __package__:

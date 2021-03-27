@@ -22,6 +22,12 @@ import traceback
 import keras
 import keras.preprocessing.image
 import tensorflow as tf
+tf.logging.set_verbosity(tf.logging.ERROR)
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
+config = tf.ConfigProto(gpu_options=gpu_options)
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config)
+
 
 # Allow relative imports when being executed as script.
 if __name__ == "__main__" and not __package__:
