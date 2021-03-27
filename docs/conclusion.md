@@ -1,7 +1,3 @@
----
-title: Conclusion
----
-
 ## 5. Conclusion
 
 While initially getting the repository to work may seem impossible due to numerous errors coming from legacy scripts it's possible to use these steps and criteria to make it work (or to accept that it won't work on a certain setup). By following these steps on different setups we have been able to check what works and what doesn't. Some guidelines to make sure that interested parties can easily use a certain repository can be set:

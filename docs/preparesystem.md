@@ -1,7 +1,3 @@
----
-title: Preparing System
----
-
 ## 2. Preparing system for usage
 
 The GitHub page of the CRFNet has clear instructions on how to install and use the provided code. Those steps do not always work and there are some knock-off criteria that have to be met in order to follow the instructions. In this section the step by step process that will work is described.

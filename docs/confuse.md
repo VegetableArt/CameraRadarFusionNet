@@ -1,7 +1,3 @@
----
-title: Configuring and using CRFNet
----
-
 ## 3. Configuring and using CRFNet
 
 In this section the configuration and usage of CRFNet is described. We are using the mini dataset of CRFNet. If you are using the normal version of nuscenes you can leave the variable data\_set as it is.

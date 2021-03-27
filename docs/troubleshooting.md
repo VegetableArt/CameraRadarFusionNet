@@ -1,7 +1,3 @@
----
-title: Troubleshooting
----
-
 ## 4. Troubleshooting errors
 
 When running the train\_crfnet.py, evaluate\_crfnet.py or test\_crfnet.py file, several errors can occur. The most common errors and their fixes are listed below. Do note that while using CRFNet multiple warnings can occur which are not important to fix (CRFNet will run perfectly fine without fixing them). In case your process quits this means that the error is important to note and fix.
