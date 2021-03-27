@@ -44,7 +44,11 @@ from crfnet.utils.anchor_calc import compute_overlap
 from crfnet.utils.anchor_parameters import AnchorParameters
 from crfnet.utils.helpers import makedirs
 from crfnet.data_processing.generator.crf_main_generator import create_generators
-
+import tensorflow as tf
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
+config = tf.ConfigProto(gpu_options=gpu_options)
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config)
 
 if __name__ == '__main__':
 
@@ -225,6 +229,7 @@ if __name__ == '__main__':
         aps.append(average_precision)
 
     mean_ap = sum([a * b for a, b in zip(total_instances, aps)]) / sum(total_instances)
+    print("mAP: ",mean_ap)
 
     ## Store precision recall values
     save_path = './' + cfg.model_name + '/'
