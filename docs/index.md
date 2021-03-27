@@ -179,6 +179,14 @@ All main scripts depend on the following subfolders:
 3. model folder contains all the neural network models that can be used. Based on RetinaNet, architectures that fuse camera and radar data at the feature extractor or the FPN are stored here.
 4. utils folder contains helper functions that are needed in many places in this repository.
 
+| File               | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| train_crfnet.py    | Used to train the CRF-Net.                                   |
+| evaluate_crfnet.py | Used to evaluate a trained CRF-Net model on the validation set. |
+| test_crfnet.py     | Used to test a trained CRF-Net model on the test set. This script can be used to record videos. |
+| requirements.txt   | Contains the requirements for the scripts in this repository. |
+| setup.py           | Installs the requirements for this repository and registers this repository in the python modules. |
+
 ### 3.2 Configuring CRFNet
 
 Create a new config file in the config folder in the crfnet folder and change: 
