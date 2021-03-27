@@ -2,6 +2,10 @@
 
 This project is about paper <a href="https://arxiv.org/abs/2005.07431/" target="_blank">[1]</a> which was published in May 2020. Based on this paper a reproduction has to be done for the course CS4240. The paper provides a link to the GitHub repository containing the code they used to produce the project <a href="https://github.com/TUMFTM/CameraRadarFusionNet/" target="_blank">[2]</a>. The aim of this project to describe how this project can be reproduced. First by trying the provided GitHub code and its instructions and then with adjustments to the code and process to get it working. Due to the hard nature of getting this repository to work (depending on the situation) the main goal of this project will be to describe what aspects are important to keep in mind when sharing code that is used to write a paper about deep learning and what errors can be encountered when trying to reproduce certain code given by an author of a deep learning paper. Also some guidelines will be given to prevent situations where it's almost impossible to reproduce code while given clear instructions.
 
+### 1.1 Modified repository
+
+The original repository from TUMFTM has been forked and modified a bit to apply small fixes that will probably occur during setup and usage. If you are using the forked repository of VegetableArt you will probably find out that some steps aren't necessary to execute because they are already done. Escpecially the removal of the `numpy>=1.16.*` requirement from the `reguirements.txt` file.
+
 ## 2. Preparing system for usage
 
 The GitHub page of the CRFNet has clear instructions on how to install and use the provided code. Those steps do not always work and there are some knock-off criteria that have to be met in order to follow the instructions. In this section the step by step process that will work is described.
@@ -40,7 +44,7 @@ Using docker to get the code from the repository working doesn't work initially.
 
 #### 2.1.5 Notes about Google Compute Engine environment
 
-Using a Virtual Machine from Google Compute Engine can be an attractive option in case collaboration is desired and the management of hardware needs to be done by another company. The Google Compute Engine does provide VM's with compatible GPU's which can be used for running this project. It can be expensive (in the range of \$2,500 USD for the minimal configuration: NVIDIA Tesla A100, 12vCPU, 85GB Memory)
+Using a Virtual Machine from Google Compute Engine can be an attractive option in case collaboration is desired and the management of hardware needs to be done by another company. The Google Compute Engine does provide VM's with compatible GPU's which can be used for running this project. It can be expensive (in the range of $2,500 USD for the minimal configuration: NVIDIA Tesla A100, 12vCPU, 85GB Memory)
 
 ### 2.2 Step-by-step installation guide
 
@@ -110,7 +114,7 @@ In case the GPU is not supported this will not work for you, but there is a work
 
     ```bash
     sudo apt-get install libcupti-dev
-    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:\$LD_LIBRARY_PATH' >> ~/.bashrc
+    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
     ```
 
 11. Install GraphViz:
@@ -159,7 +163,7 @@ In case the GPU is not supported this will not work for you, but there is a work
 
 ## 3. Configuring and using CRFNet
 
-In this section the configuration and usage of CRFNet is described. We are using the mini dataset of CRFNet. If you are using the normal version of nuscenes you can leave the variable data\_set as it is.
+In this section the configuration and usage of CRFNet is described. We are using the mini dataset of CRFNet. If you are using the normal version of nuscenes you can leave the variable data_set as it is.
 
 ### 3.1 Folder structure and files
 
@@ -229,7 +233,7 @@ With options:
 
 * --render to show images with predicted bounding boxes during execution
 
-* --eval\_from\_detection\_pickle to load saved detection files from the hard drive instead of running the model to evaluate it.
+* --eval_from_detection_pickle to load saved detection files from the hard drive instead of running the model to evaluate it.
 
 Notes: The values and curves are saved onto the hard drive.
 
@@ -247,7 +251,7 @@ With options:
 * --model <path to model> model file saved from prior training.
 * --st <score trehshold> select a custom threshold at which predictions are considered as positive.
 * --render to show images with predicted bounding boxes during execution.
-* --no\_radar\_visualization suppresses the radar data in the visualization.
+* --no_radar_visualization suppresses the radar data in the visualization.
 * --inference to run the network on all samples (not only the labeled ones, only TUM camera dataset).
 
 Notes: With the --render option, running this command will show the predicted obstacles with bounding boxes in an image. The results of the renders will be saved in a folder.
@@ -257,19 +261,30 @@ Notes: With the --render option, running this command will show the predicted ob
 To assess the performance of CRFNet three tests have been done and the results are visually compared.
 
 1. The supplied weights are used to test
-   1. Results in mAP: 0.6015
+
+   Results in mAP: 0.6015
+
 2. The mini dataset is used to train using 12 workers and 20 epochs.
-   1. Results in mAP: 0.5816 
+
+   Results in mAP: 0.5816 
+
 3. The mini dataset is used to train using 12 workers and 40 epochs
-   1. Results in mAP 0.6964
+
+   Results in mAP 0.6964
 
 Comparison of visuals shows that the result are mostly similar but show some differences.
 
-IMAGESIMAGES
+| Comparison of supplied weights, 20 epochs and 40 epochs      |
+| ------------------------------------------------------------ |
+| Frame 10                                                     |
+| ![[HeEv519.png (636×436) (imgur.com)](https://i.imgur.com/HeEv519.png)](https://i.imgur.com/HeEv519.png) |
+| Frame 2                                                      |
+| ![[V8L7Mgp_d.webp (633×753) (imgur.com)](https://i.imgur.com/V8L7Mgp_d.webp?maxwidth=760&fidelity=grand)](https://i.imgur.com/V8L7Mgp_d.webp?maxwidth=760&fidelity=grand) |
+
 
 ## 4. Troubleshooting errors
 
-When running the train\_crfnet.py, evaluate\_crfnet.py or test\_crfnet.py file, several errors can occur. The most common errors and their fixes are listed below. Do note that while using CRFNet multiple warnings can occur which are not important to fix (CRFNet will run perfectly fine without fixing them). In case your process quits this means that the error is important to note and fix.
+When running the train_crfnet.py, evaluate_crfnet.py or test_crfnet.py file, several errors can occur. The most common errors and their fixes are listed below. Do note that while using CRFNet multiple warnings can occur which are not important to fix (CRFNet will run perfectly fine without fixing them). In case your process quits this means that the error is important to note and fix.
     
 
 #### 4.1 DLL is not found / CUDA lib errors
@@ -295,7 +310,7 @@ This means that the program uses more resources than it has available, try reduc
 ![](https://codimd.s3.shivering-isles.com/demo/uploads/upload_011a15de7d0cdf87db3ce813e0a70fb3.png)
 
 
-#### 4.5 CUDA\_ERROR\_OUT\_OF\_MEMORY
+#### 4.5 CUDA_ERROR_OUT_OF_MEMORY
 
 This error means that you ran out of memory on your GPU. A way to solve this is to change the batch size (bigger or smaller). In our case this problems was solved after changing the batch size from 1 to 5. A reboot of the system could also help. Another time the solution which helped us is adding the following lines below the import statement of tensorflow in `train_crfnet.py` and `test_crfnet.py` :
 
@@ -308,13 +323,19 @@ session = tf.Session(config=config)
 
 #### 4.6 cudnn PoolForward launch failed
 
-If you receive this error there is probably something wrong with memory allocation by tensorflow. To fix this you can add the following lines directly bellow the line that imports tensorflow into the script (this will possibly happen in the test\_crfnet.py script).
+If you receive this error there is probably something wrong with memory allocation by tensorflow. To fix this you can add the following lines directly bellow the line that imports tensorflow into the script (this will possibly happen in the test_crfnet.py script).
 
 ```python
 gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
 config = tf.ConfigProto(gpu_options=gpu_options) 
 config.gpu_options.allow_growth = True
 session = tf.Session(config=config)    
+```
+
+Note: If this error happens in `evaluate_crfnet.py` then you also need to add the import statement for tensorflow
+
+```python
+import tensorflow as tf
 ```
 
 ## 5. Conclusion
@@ -328,5 +349,5 @@ While initially getting the repository to work may seem impossible due to numero
 
 ## 6. References
 
-1. Nobix, F., Chair of Automotive Technology, Technical University of Munich, Geisslinger, M., Weber, M., Betz, J., \& Lienkamp, M. (2020). A Deep Learning-based Radar and Camera Sensor Fusion Architecture for Object Detection. ArXiv, 1. https://arxiv.org/abs/2005.07431
-2. Nobis, F. \& TUM - Institute of Automotive Technology. (n.d.). TUMFTM/CameraRadarFusionNet. GitHub. Retrieved March 16, 2021, from https://github.com/TUMFTM/CameraRadarFusionNet
+1. Nobix, F., Chair of Automotive Technology, Technical University of Munich, Geisslinger, M., Weber, M., Betz, J., & Lienkamp, M. (2020). A Deep Learning-based Radar and Camera Sensor Fusion Architecture for Object Detection. ArXiv, 1. https://arxiv.org/abs/2005.07431
+2. Nobis, F. & TUM - Institute of Automotive Technology. (n.d.). TUMFTM/CameraRadarFusionNet. GitHub. Retrieved March 16, 2021, from https://github.com/TUMFTM/CameraRadarFusionNet
