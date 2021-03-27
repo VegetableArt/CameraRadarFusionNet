@@ -1,6 +1,6 @@
 theme: jekyll-theme-cayman
 title: Reproduction project CRFNet
 description: This website describes how the CRFNet repository can be reproduced.
-
-include:
-  - index.md
+# SITE CONFIGURATION
+baseurl: ""
+url: "https://vegetableart.github.io"
